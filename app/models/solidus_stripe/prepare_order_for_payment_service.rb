@@ -7,7 +7,7 @@ module SolidusStripe
     def initialize(address, controller, user)
       @address = address
       @order = controller.current_order
-      @user = controller.user
+      @user = user
       @email = controller.params[:email]
       @shipping_id = controller.params[:shipping_option][:id]
     end
