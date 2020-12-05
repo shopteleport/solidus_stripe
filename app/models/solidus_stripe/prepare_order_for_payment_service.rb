@@ -33,7 +33,7 @@ module SolidusStripe
     end
 
     def manage_guest_checkout
-      order.email = email unless user
+      order.email = email if email
     end
 
     def advance_order_to_payment_state
