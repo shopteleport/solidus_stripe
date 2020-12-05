@@ -14,7 +14,7 @@ RSpec.describe SolidusStripe::PrepareOrderForPaymentService do
   let(:controller) do
     double(
       current_order: order,
-      spree_current_user: user,
+      current_user: user,
       params: {
         email: email,
         shipping_option: { id: shipping_method.id }

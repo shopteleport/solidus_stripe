@@ -4,10 +4,10 @@ module SolidusStripe
   class PrepareOrderForPaymentService
     attr_reader :order, :address, :user, :email, :shipping_id
 
-    def initialize(address, controller)
+    def initialize(address, controller, user)
       @address = address
       @order = controller.current_order
-      @user = controller.spree_current_user
+      @user = controller.user
       @email = controller.params[:email]
       @shipping_id = controller.params[:shipping_option][:id]
     end

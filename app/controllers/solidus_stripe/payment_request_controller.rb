@@ -7,7 +7,7 @@ module SolidusStripe
     def shipping_rates
       rates = SolidusStripe::ShippingRatesService.new(
         current_order,
-        spree_current_user,
+        current_user,
         params[:shipping_address]
       ).call
 
@@ -23,11 +23,11 @@ module SolidusStripe
 
       address = SolidusStripe::AddressFromParamsService.new(
         shipping_address_from_params,
-        spree_current_user
+        current_user
       ).call
 
       if address.valid?
-        SolidusStripe::PrepareOrderForPaymentService.new(address, self).call
+        SolidusStripe::PrepareOrderForPaymentService.new(address, self, current_user).call
 
         if current_order.payment?
           render json: { success: true }
