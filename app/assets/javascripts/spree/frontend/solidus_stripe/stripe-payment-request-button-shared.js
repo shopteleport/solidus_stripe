@@ -39,7 +39,7 @@
               // One of 'dark', 'light', or 'light-outline'
               // Defaults to 'dark'
         
-              height: '64px'
+              height: '48px'
               // Defaults to '40px'. The width is always '100%'.
             },
           }
