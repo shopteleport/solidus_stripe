@@ -28,7 +28,21 @@
         });
 
         var prButton = this.elements.create('paymentRequestButton', {
-          paymentRequest: paymentRequest
+          paymentRequest: paymentRequest,
+          style: {
+            paymentRequestButton: {
+              type: 'default',
+              // One of 'default', 'book', 'buy', or 'donate'
+              // Defaults to 'default'
+        
+              theme: 'light',
+              // One of 'dark', 'light', or 'light-outline'
+              // Defaults to 'dark'
+        
+              height: '64px'
+              // Defaults to '40px'. The width is always '100%'.
+            },
+          }
         });
 
         var onButtonMount = function(result) {
