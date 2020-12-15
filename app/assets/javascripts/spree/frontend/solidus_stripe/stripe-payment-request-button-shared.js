@@ -9,6 +9,7 @@
     setUpPaymentRequest: function(opts) {
       var opts = opts || {};
       var config = this.config.payment_request;
+      var items = this.items;
 
       if (config) {
         config.requestShipping = opts.requestShipping || false;
@@ -16,12 +17,7 @@
         var paymentRequest = this.stripe.paymentRequest({
           country: config.country,
           currency: config.currency,
-          displayItems: [
-            {
-              label: 'Fancy Hat',
-              amount: '15.00'
-            },
-          ],
+          displayItems: items,
           total: {
             label: config.label,
             amount: config.amount
