@@ -16,9 +16,8 @@
         var paymentRequest = this.stripe.paymentRequest({
           country: config.country,
           currency: config.currency,
-          paymentSummaryItems: [
+          displayItems: [
             {
-              type: 'final',
               label: 'Fancy Hat',
               amount: '15.00'
             },
