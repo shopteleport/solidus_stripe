@@ -9,7 +9,7 @@
     setUpPaymentRequest: function(opts) {
       var opts = opts || {};
       var config = this.config.payment_request;
-      var items = this.items;
+      var items = this.config.items;
 
       if (config) {
         config.requestShipping = opts.requestShipping || false;

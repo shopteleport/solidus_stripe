@@ -2,7 +2,6 @@ window.SolidusStripe = window.SolidusStripe || {};
 
 SolidusStripe.Payment = function() {
   this.config = $('[data-stripe-config]').data('stripe-config');
-  this.items = $('[data-stripe-items]').data('items');
   this.element = $('#payment_method_' + this.config.id);
   this.authToken = $('meta[name="csrf-token"]').attr('content');
 
