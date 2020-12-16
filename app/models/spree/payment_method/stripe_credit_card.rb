@@ -22,7 +22,7 @@ module Spree
           id: id,
           publishable_key: preferred_publishable_key,
           items: (
-            order.line_items.map { |l| { label: l.name, amount: Integer(l.total * 100) }} + 
+            order.line_items.map { |l| { label: l.name, amount: Integer(l.total_before_tax * 100) }} + 
             [ { label: "Taxes", amount: Integer(order.tax_total * 100) } ] +
             order.adjustments.select { |a| !a.amount.zero? } .map { |a| { label: a.label, amount: Integer(a.amount * 100) }}
           )
