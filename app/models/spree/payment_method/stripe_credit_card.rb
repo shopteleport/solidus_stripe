@@ -20,13 +20,18 @@ module Spree
       def stripe_config(order)
         {
           id: id,
-          publishable_key: preferred_publishable_key
+          publishable_key: preferred_publishable_key,
+          items: (
+            order.line_items.map { |l| { label: l.name, amount: Integer(l.total * 100) }} + 
+            [ { label: "Taxes", amount: Integer(order.tax_total * 100) } ] +
+            order.adjustments.select { |a| !a.amount.zero? } .map { |a| { label: a.label, amount: Integer(a.amount * 100) }}
+          )
         }.tap do |config|
           config.merge!(
             payment_request: {
               country: preferred_stripe_country,
               currency: order.currency.downcase,
-              label: "Payment for order #{order.number}",
+              label: "Teleport for order",
               amount: (order.total * 100).to_i
             }
           ) if payment_request?
