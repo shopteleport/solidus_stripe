@@ -14,6 +14,7 @@ module SolidusStripe
       order_items = (
         current_order.line_items.map { |l| { label: l.name, amount: Integer(l.total_before_tax * 100) }} + 
         [ { label: "Taxes", amount: Integer(current_order.tax_total * 100) } ] +
+        [ { label: "Shipping", amount: rates.first[:amount] } ] +
         current_order.adjustments.select { |a| !a.amount.zero? } .map { |a| { label: a.label, amount: Integer(a.amount * 100) }}
       )
 
