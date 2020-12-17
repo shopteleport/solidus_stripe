@@ -86,7 +86,12 @@
             } else {
               ev.updateWith({
                 status: 'success',
-                shippingOptions: result.shipping_rates
+                shippingOptions: result.shipping_rates,
+                displayItems: result.items,
+                total: {
+                  label: result.label,
+                  amount: result.amount
+                },
               });
             }
           });

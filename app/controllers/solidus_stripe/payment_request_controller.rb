@@ -11,8 +11,14 @@ module SolidusStripe
         params[:shipping_address]
       ).call
 
+      order_items = (
+        current_order.line_items.map { |l| { label: l.name, amount: Integer(l.total_before_tax * 100) }} + 
+        [ { label: "Taxes", amount: Integer(current_order.tax_total * 100) } ] +
+        current_order.adjustments.select { |a| !a.amount.zero? } .map { |a| { label: a.label, amount: Integer(a.amount * 100) }}
+      )
+
       if rates.any?
-        render json: { success: true, shipping_rates: rates }
+        render json: { success: true, shipping_rates: rates, amount: (current_order.total * 100).to_i, items: order_items }
       else
         render json: { success: false, error: 'No shipping method available for that address' }, status: 500
       end
