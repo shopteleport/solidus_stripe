@@ -18,7 +18,7 @@ module SolidusStripe
       )
 
       if rates.any?
-        render json: { success: true, shipping_rates: rates, amount: (current_order.total * 100).to_i, items: order_items }
+        render json: { success: true, shipping_rates: rates, label: "Teleport for order", amount: (current_order.total * 100).to_i, items: order_items }
       else
         render json: { success: false, error: 'No shipping method available for that address' }, status: 500
       end
