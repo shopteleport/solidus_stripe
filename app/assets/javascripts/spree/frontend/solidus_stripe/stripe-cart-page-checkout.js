@@ -12,7 +12,7 @@ Object.defineProperty(SolidusStripe.CartPageCheckout.prototype, 'constructor', {
 });
 
 SolidusStripe.CartPageCheckout.prototype.init = function() {
-  this.setUpPaymentRequest({requestShipping: true});
+  this.setUpPaymentRequest({requestShipping: false});
 };
 
 SolidusStripe.CartPageCheckout.prototype.showError = function(error) {

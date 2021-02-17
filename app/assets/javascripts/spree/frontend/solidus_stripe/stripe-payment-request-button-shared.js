@@ -22,9 +22,9 @@
             label: config.label,
             amount: config.amount
           },
-          requestPayerName: true,
-          requestPayerEmail: true,
-          requestPayerPhone: true,
+          requestPayerName: false,
+          requestPayerEmail: false,
+          requestPayerPhone: false,
           requestShipping: config.requestShipping,
           shippingOptions: []
         });
