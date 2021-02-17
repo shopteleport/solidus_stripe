@@ -63,7 +63,7 @@ module SolidusStripe
             gateway_payment_profile_id: intent_customer_profile,
             name: card_holder_name || address_full_name,
             # address_attributes: address_attributes
-            address_attributes: current_order.bill_address
+            address_attributes: current_order.bill_address.attributes
           }
         }]
       }
