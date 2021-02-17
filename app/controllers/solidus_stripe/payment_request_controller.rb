@@ -29,15 +29,16 @@ module SolidusStripe
     end
 
     def update_order
-      current_order.restart_checkout_flow
+      # current_order.restart_checkout_flow
 
-      address = SolidusStripe::AddressFromParamsService.new(
-        shipping_address_from_params,
-        current_user
-      ).call
+      # address = SolidusStripe::AddressFromParamsService.new(
+      #   shipping_address_from_params,
+      #   current_user
+      # ).call
 
-      if address.valid?
-        SolidusStripe::PrepareOrderForPaymentService.new(address, self, current_user).call
+      # if address.valid? # ORIGINAL
+      if current_order.ship_address.valid?
+        # SolidusStripe::PrepareOrderForPaymentService.new(address, self, current_user).call
 
         if current_order.payment?
           render json: { success: true }
