@@ -34,7 +34,7 @@ module Spree
               country: preferred_stripe_country,
               currency: order.currency.downcase,
               label: "Teleport",
-              amount: (order.order_total_after_store_credit * 100).to_i
+              amount: ((order.order_total_after_store_credit + order.card_processing_fee) * 100).to_i
             }
           ) if payment_request?
         end

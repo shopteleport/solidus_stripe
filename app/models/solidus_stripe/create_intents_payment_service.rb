@@ -50,11 +50,10 @@ module SolidusStripe
     end
 
     def payment_params
-      amount_to_charge = [current_order.order_total_after_store_credit, 1].max
       {
         payments_attributes: [{
           payment_method_id: stripe.id,
-          amount: amount_to_charge,
+          amount: current_order.order_total_after_store_credit + current_order.card_processing_fee,
           response_code: intent_id,
           source_attributes: {
             month: intent_card['exp_month'],

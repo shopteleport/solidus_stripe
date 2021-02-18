@@ -50,10 +50,8 @@ module SolidusStripe
     end
 
     def create_payment_intent
-      # We should never charge less than $1
-      amount_to_charge = [current_order.order_total_after_store_credit, 1].max
       stripe.create_intent(
-        (amount_to_charge * 100).to_i,
+        ((current_order.order_total_after_store_credit + current_order.card_processing_fee) * 100).to_i,
         params[:stripe_payment_method_id],
         description: "Solidus Order ID: #{current_order.number} (pending)",
         currency: current_order.currency,
