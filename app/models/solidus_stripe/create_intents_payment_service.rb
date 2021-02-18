@@ -53,7 +53,7 @@ module SolidusStripe
       {
         payments_attributes: [{
           payment_method_id: stripe.id,
-          amount: current_order.total,
+          amount: current_order.order_total_after_store_credit,
           response_code: intent_id,
           source_attributes: {
             month: intent_card['exp_month'],
