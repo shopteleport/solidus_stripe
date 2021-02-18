@@ -26,7 +26,7 @@ module Spree
             [ { label: "Tax", amount: Integer(order.tax_total * 100) } ] +
             [ { label: "Shipping", amount: Integer(order.ship_total * 100) } ] +
             order.adjustments.select { |a| !a.amount.zero? } .map { |a| { label: a.label, amount: Integer(a.amount * 100) }}
-            [ { label: "Teleport Cash", amount: -Integer(order.total_applicable_store_credit * 100) } ] +
+            [ { label: "Teleport Cash", amount: -Integer(order.total_applicable_store_credit * 100) } ]
           )
         }.tap do |config|
           config.merge!(
